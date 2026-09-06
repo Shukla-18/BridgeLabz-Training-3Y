@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Times New Roman', Georgia, serif;
+  background-color: #f4f1ea;
+  color: #222;
+  padding: 2rem;
+}
+
+.newspaper {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #fffaf0;
+  padding: 2.5rem;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+}
+
+.paper-title {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bold;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  border-bottom: 3px double #333;
+  padding-bottom: 1rem;
+  color: #111;
+}
+
+.columns {
+  column-count: 3;
+  column-gap: 2rem;
+}
+
+.main-heading {
+  column-span: all;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #ccc;
+  color: #b22222;
+}
+
+.columns p {
+  text-align: justify;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+  text-indent: 1.5rem;
+}
+
+.float-img {
+  float: left;
+  margin: 0.3rem 1rem 0.5rem 0;
+  border: 1px solid #ccc;
+  padding: 4px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+@media (max-width: 700px) {
+  .columns {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 480px) {
+  .columns {
+    column-count: 1;
+  }
+}

@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+.box-container {
+  display: flex;
+  gap: 20px;
+}
+.box{
+    width:10vw;
+    height:100vh;
+    background-color : red;
+    border : 10px solid black;
+    padding  : 15px;
+
+
+}
+
+
+
+.box2{
+    width:100px;
+    height:100px;
+    background-color : rgb(0, 60, 255);
+    border : 10px solid black;
+    padding : 15px;
+    box-sizing : content-box;
+    box-shadow: -10px 10px 5px 0px rgba(10, 97, 112, 0.75);
+
+}

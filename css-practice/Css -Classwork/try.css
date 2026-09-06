@@ -1,0 +1,57 @@
+:root {
+    --bg-main: #f0f0f0;
+
+    --bg-sidebar: #e0e0e0;
+    --bg-sidebar-hover: #d0d0d0;
+    --bg-sidebar-active: #c0c0c0;
+
+    --accent-primary: #6366f1;
+    --acent-glow: rgba(99, 102, 241, 0.5);
+
+
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    --text-dim:#64748b;
+
+    --border-color: #e5e7eb;
+    --border-subtle: #cbd5e1;
+
+    --border-color :#1e2433;
+    --border-subtle: #1e2433;
+    ---ac: black;
+    --sidebar-width: 270px;
+
+    --transition-speed:0.3s;
+
+}
+/* ======================================   
+        reset css
+====================================== */
+* { 
+    margin : 0;
+    padding : 0;
+}
+
+body{
+    min-height: 100vh;
+
+    background-color: var(--bg-main);
+
+    font-family: 
+    Arial,
+    helvetica,
+    sans-serif;
+
+    color: var(--text-main);
+    background-color: whitesmoke;
+    
+
+}
+/* ======================================   
+        sidebar
+====================================== */
+.siderbar{
+    width:var(--sidebar-width);
+    min-height: 100vh;
+    background-color: var(--bg-sidebar);
+}
