@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Chatbot</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: #f5f5f5;
+        }
+
+        /* TOP BLUE BAR */
+        .top-bar {
+            height: 70px;
+            width: 100%;
+            background: #1677ff;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding-left: 65px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        /* MAIN AREA */
+        .main {
+            display: flex;
+            height: calc(100vh - 70px);
+        }
+
+        /* LEFT BLACK SIDEBAR */
+        .sidebar {
+            width: 250px;
+            background: #000;
+            padding: 20px;
+        }
+
+        /* NEW CHAT BUTTON */
+        .new-chat {
+            width: 100%;
+            padding: 12px;
+            background: #222;
+            color: white;
+            border: 1px solid #444;
+            border-radius: 5px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .new-chat:hover {
+            background: #333;
+        }
+
+        /* RIGHT CHAT SECTION */
+        .chat-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #f5f5f5;
+        }
+
+        /* MESSAGES AREA */
+        .messages {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        /* MESSAGE ROW */
+        .message {
+            display: flex;
+            margin-bottom: 25px;
+        }
+
+        /* USER MESSAGE - RIGHT */
+        .user {
+            justify-content: flex-end;
+        }
+
+        /* BOT MESSAGE - LEFT */
+        .bot {
+            justify-content: flex-start;
+        }
+
+        /* MESSAGE BOX */
+        .message-box {
+            max-width: 60%;
+            padding: 14px 18px;
+            font-size: 15px;
+            line-height: 1.5;
+            border-radius: 4px;
+        }
+
+        /* USER MESSAGE = RED */
+        .user .message-box {
+            background: red;
+            color: white;
+        }
+
+        /* BOT MESSAGE = BLACK */
+        .bot .message-box {
+            background: black;
+            color: white;
+        }
+
+        /* INPUT AREA */
+        .input-area {
+            display: flex;
+            gap: 10px;
+            padding: 15px 25px;
+            background: white;
+            border-top: 1px solid #ddd;
+        }
+
+        /* INPUT BOX */
+        .input-area input {
+            flex: 1;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .input-area input:focus {
+            border-color: #1677ff;
+        }
+
+        /* SEND BUTTON */
+        .send-btn {
+            padding: 0 25px;
+            border: none;
+            border-radius: 5px;
+            background: #1677ff;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .send-btn:hover {
+            background: #095dcc;
+        }
+
+        /* MOBILE */
+        @media (max-width: 700px) {
+
+            .sidebar {
+                width: 180px;
+            }
+
+            .top-bar {
+                padding-left: 20px;
+            }
+
+            .message-box {
+                max-width: 80%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP BLUE BAR -->
+    <div class="top-bar">
+        CodeChatbot
+    </div>
+
+
+    <!-- MAIN AREA -->
+    <div class="main">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="sidebar">
+
+            <button class="new-chat" onclick="newChat()">
+                + New Chat
+            </button>
+
+        </aside>
+
+
+        <!-- RIGHT CHAT SECTION -->
+        <section class="chat-section">
+
+            <!-- MESSAGES -->
+            <div class="messages" id="messages">
+
+                <!-- USER MESSAGE -->
+                <div class="message user">
+                    <div class="message-box">
+                        Hello! What can you do?
+                    </div>
+                </div>
+
+
+                <!-- BOT MESSAGE -->
+                <div class="message bot">
+                    <div class="message-box">
+                        Hello! 👋 I'm CodeChatbot. How can I help you?
+                    </div>
+                </div>
+
+
+                <!-- USER MESSAGE -->
+                <div class="message user">
+                    <div class="message-box">
+                        Can you help me with HTML?
+                    </div>
+                </div>
+
+
+                <!-- BOT MESSAGE -->
+                <div class="message bot">
+                    <div class="message-box">
+                        Of course! 🤖 I can help you create HTML websites.
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- INPUT AREA -->
+            <div class="input-area">
+
+                <input
+                    type="text"
+                    id="messageInput"
+                    placeholder="Message CodeChatbot..."
+                >
+
+                <button class="send-btn" onclick="sendMessage()">
+                    Send
+                </button>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <script>
+        const input = document.getElementById("messageInput");
+        const messages = document.getElementById("messages");
+
+        function addMessage(text, sender) {
+            const message = document.createElement("div");
+            message.className = `message ${sender}`;
+
+            const messageBox = document.createElement("div");
+            messageBox.className = "message-box";
+            messageBox.textContent = text;
+
+            message.appendChild(messageBox);
+            messages.appendChild(message);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function getBotReply(userText) {
+            const lowerText = userText.toLowerCase();
+
+            if (lowerText.includes("hello") || lowerText.includes("hi")) {
+                return "Hello! 👋 Nice to meet you.";
+            }
+
+            if (lowerText.includes("html")) {
+                return "Of course! 🤖 I can help with HTML structure and web design.";
+            }
+
+            if (lowerText.includes("help") || lowerText.includes("can you do")) {
+                return "I can help with basic HTML, CSS, and chatting examples.";
+            }
+
+            if (lowerText.includes("thank")) {
+                return "You are welcome! 😊";
+            }
+
+            return "Hello! 👋 I received your message.";
+        }
+
+        function sendMessage() {
+            const text = input.value.trim();
+
+            if (text === "") {
+                return;
+            }
+
+            addMessage(text, "user");
+            input.value = "";
+
+            setTimeout(function () {
+                addMessage(getBotReply(text), "bot");
+            }, 400);
+        }
+
+        input.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                sendMessage();
+            }
+        });
+
+        function newChat() {
+            messages.innerHTML = "";
+            addMessage("New chat started! 👋", "bot");
+            input.focus();
+        }
+    </script>
+
+</body>
+</html>
